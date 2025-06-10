@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="字符串模式匹配/KMP"><meta name="keywords" content="算法"><meta name="author" content="Kirius,undefined"><meta name="copyright" content="Kirius"><title>字符串模式匹配/KMP【Kirius】</title><link rel="stylesheet" href="/css/fan.css"><link rel="stylesheet" href="/css/thirdparty/jquery.mCustomScrollbar.min.css"><link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css"><link rel="icon" href="/favicon.ico"><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- script(src=url_for("/js/mathjax/mathjax.js"))--><script type="text/x-mathjax-config">MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+});
+</script><script>var isPassword = '' || false;
+if (isPassword) {
+    if (prompt('请输入文章密码') !== '') {
+        alert('密码错误！');
+        history.back();
+    }
+}</script><script>window.GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  gitment: {},
+  valine: {},
+  twikoo: {},
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><canvas id="universe"></canvas><!--#body--><div id="sidebar"><div class="toggle-sidebar-info button-hover"><span data-toggle="文章目录">站点概览</span></div><div class="sidebar-toc"><div class="sidebar-toc-title">目录</div><div class="sidebar-toc-progress"><span class="progress-notice">您已阅读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc-progress-bar"></div></div><div class="sidebar-toc-content" id="sidebar-toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%B4%E7%B4%A0%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">朴素模式匹配算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#KMP%E7%AE%97%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">KMP算法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#next%E6%95%B0%E7%BB%84"><span class="toc-number">2.1.</span> <span class="toc-text">next数组</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#next%E6%95%B0%E7%BB%84%E7%9A%84%E4%BC%98%E5%8C%96"><span class="toc-number">2.2.</span> <span class="toc-text">next数组的优化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.3.</span> <span class="toc-text">实现</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info-avatar"><img class="author-info-avatar-img" src="/images/avatar.jpg"></div><div class="author-info-name">Kirius</div><div class="author-info-description"></div><div class="links-buttons"><a class="links-button button-hover" href="https://github.com/Kiriusxv" target="_blank">GitHub<i class="icon-dot bg-color8"></i></a><a class="links-button button-hover" href="mailto:1337127972@qq.com" target="_blank">E-Mail<i class="icon-dot bg-color0"></i></a><a class="links-button button-hover" href="tencent://message/?uin=(?)&amp;Site=&amp;Menu=yes" target="_blank">QQ<i class="icon-dot bg-color5"></i></a></div><div class="author-info-articles"><a class="author-info-articles-archives article-meta" href="/archives"><span class="pull-top">日志</span><span class="pull-bottom">19</span></a><a class="author-info-articles-tags article-meta" href="/tags"><span class="pull-top">标签</span><span class="pull-bottom">15</span></a><a class="author-info-articles-categories article-meta" href="/categories"><span class="pull-top">分类</span><span class="pull-bottom">8</span></a></div></div></div><div id="main-container"><header><div id="menu-outer"><i class="menu-list-icon fas fa-bars"></i><nav id="menu-inner"><a class="menu-item" href="/">首页</a><a class="menu-item" href="/tags">标签</a><a class="menu-item" href="/categories">分类</a><a class="menu-item" href="/archives">归档</a><a class="menu-item" href="/about">关于</a></nav><div class="right-info"><a class="title-name" href="/">Kirius</a><span id="now-time"></span></div></div></header><div id="content-outer"><div id="content-inner"><article id="post"><div class="post-header"><div class="title">字符串模式匹配/KMP</div><div class="container"><time class="button-hover post-date"><i class="fas fa-calendar-alt article-icon" aria-hidden="true"></i> 发表于 2025-05-20 | 更新于 2025-06-03</time><!--time.button-hover.post-date #[i.fas.fa-calendar-alt.article-icon(aria-hidden="true")] #[=__('post.modified')] #[=date(page['updated'], config.date_format)]--><div class="button-hover categories"><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></div><div class="button-hover tags"><i class="fa fa-tag article-icon" aria-hidden="true"></i><a class="link-a" href="/tags/%E7%AE%97%E6%B3%95/">算法</a></div></div></div><div class="main-content"><p>​	日常网路生活中很多地方都需要用到字符匹配，最常见的如使用搜索引擎的时候。</p>
+<p>​	这里我们学习两种算法：朴素模式匹配算法、KMP算法。</p>
+<span id="more"></span>
+
+<h4 id="朴素模式匹配算法"><a href="#朴素模式匹配算法" class="headerlink" title="朴素模式匹配算法"></a>朴素模式匹配算法</h4><p>主串长度为n，模式串长度为m</p>
+<p>朴素模式匹配算法：将主串中所有长度为m的子串依次与模式串对比，直到找到一个完全匹配的子串，或所有的子串都不匹配为止。</p>
+<p>此时，最多拥有n-m+1个子串。这里可以类比在String的学习中学到的Index即定位操作。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">Index</span><span class="params">(SString S,SString T)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> i=<span class="number">1</span>,j=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(i&lt;-Slength &amp;&amp;j&lt;=T.length)&#123;</span><br><span class="line">		<span class="keyword">if</span>(s.ch[i]==T.ch[j])&#123;</span><br><span class="line">			+<span class="number">+1</span>;++j;<span class="comment">//继续比较后继字符</span></span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		i=i-j<span class="number">+2</span>;</span><br><span class="line">		j=<span class="number">1</span>;<span class="comment">//指针后退重新开始匹配</span></span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">if</span>(j&gt;T.length)</span><br><span class="line">		<span class="keyword">return</span> i-T.length;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最坏时间复杂度O(mn)；</p>
+<p>这种算法有一个显而易见的缺点，它一旦发现不匹配，指向字符串的指针就要回溯到开始的地方重新查找，因此kmp算法诞生了</p>
+<h4 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h4><p>KMP 的关键是：<strong>当模式串匹配失败时，尽可能利用已经匹配的信息来决定下一步的匹配位置，而不是回退文本指针</strong>。</p>
+<p>假设：</p>
+<ul>
+<li>文本串为 <code>T[0..n-1]</code></li>
+<li>模式串为 <code>P[0..m-1]</code></li>
+</ul>
+<p>匹配时：</p>
+<ul>
+<li>如果当前字符 <code>T[i] == P[j]</code>，则 <code>i++, j++</code></li>
+<li>否则 <code>j = next[j]</code>，避免重新从头匹配 <code>P</code></li>
+</ul>
+<p>这里最关键的就是这个next数组的确定，考研的话会考察手算next数组</p>
+<h5 id="next数组"><a href="#next数组" class="headerlink" title="next数组"></a>next数组</h5><p> 定义：</p>
+<p><code>next[j]</code> 表示：<strong>在 <code>P[0..j-1]</code> 这个前缀中，最长的相等的前缀和后缀的长度</strong>。</p>
+<p>也可理解为：当前 <code>j</code> 失配时，<code>j</code> 应该跳转到的位置（模式串内部的回退指针）。</p>
+<p>构建思路（递推）：</p>
+<p>设 <code>j</code> 是当前构建的位置，<code>k = next[j - 1]</code> 是上一位的最长前后缀长度。</p>
+<ul>
+<li>如果 <code>P[j] == P[k]</code>，说明 <code>P[0..k]</code> 和 <code>P[j-k..j]</code> 是匹配的，<code>next[j] = k + 1</code></li>
+<li>否则就递归地找 <code>next[k]</code>，直到 <code>k == 0</code> 或找到匹配为止</li>
+</ul>
+<p>示例：</p>
+<p>对于模式串 <code>P = &quot;a b a b c a b&quot;</code>：</p>
+<table>
+<thead>
+<tr>
+<th>j（位置）</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>P[j]</td>
+<td>a</td>
+<td>b</td>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+<td>a</td>
+<td>b</td>
+</tr>
+<tr>
+<td>next[j]</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody></table>
+<p>解释：</p>
+<ul>
+<li><code>next[2] = 1</code> 是因为 <code>P[0] == P[2] = a</code>，最长相等前后缀是 “a”</li>
+<li><code>next[4] = 0</code> 因为 <code>P[0..3] = abab</code> 没有前后缀匹配</li>
+</ul>
+<h5 id="next数组的优化"><a href="#next数组的优化" class="headerlink" title="next数组的优化"></a>next数组的优化</h5><p>当某些字符重复时，比如模式串 <code>P = &quot;aaaaa&quot;</code>，原始的 <code>next</code> 会导致重复匹配失败多次跳转仍然匹配到同一个字符。</p>
+<p><code>nextval[j]</code> 的定义：</p>
+<blockquote>
+<p>当 <code>P[j] != T[i]</code> 且 <code>next[j] &gt; 0</code>，我们跳转到 <code>nextval[j]</code> 而不是 <code>next[j]</code>，以 <strong>避免无意义的重复匹配字符</strong>。</p>
+</blockquote>
+<p>构建规则：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (P[j] == P[next[j]]) &#123;</span><br><span class="line">    nextval[j] = nextval[next[j]];</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    nextval[j] = next[j];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>或简化为：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (P[j] == P[next[j]]) &#123;</span><br><span class="line">    nextval[j] = nextval[next[j]]; <span class="comment">// 跳过重复字符</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    nextval[j] = next[j];          <span class="comment">// 保留正常跳转</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h5><p>基于以上思路实现KMP算法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">KMP</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 构建 next 数组</span></span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">getNext</span><span class="params">(<span class="type">const</span> string&amp; pattern)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m = pattern.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">next</span><span class="params">(m, <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="type">int</span> j = <span class="number">0</span>; <span class="comment">// 当前构造的位置</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; m; ++i) &#123;</span><br><span class="line">            <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; pattern[i] != pattern[j]) &#123;</span><br><span class="line">                j = next[j - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (pattern[i] == pattern[j]) &#123;</span><br><span class="line">                ++j;</span><br><span class="line">            &#125;</span><br><span class="line">            next[i] = j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构建 nextval 数组（优化版本）</span></span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">getNextVal</span><span class="params">(<span class="type">const</span> string&amp; pattern)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; next = <span class="built_in">getNext</span>(pattern);</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; nextval = next;</span><br><span class="line">        <span class="type">int</span> m = pattern.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; m; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (pattern[i] == pattern[next[i - <span class="number">1</span>]]) &#123;</span><br><span class="line">                nextval[i] = nextval[next[i - <span class="number">1</span>]];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nextval;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用 next 或 nextval 进行 KMP 匹配</span></span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">match</span><span class="params">(<span class="type">const</span> string&amp; text, <span class="type">const</span> string&amp; pattern, <span class="type">bool</span> useNextVal = <span class="literal">false</span>)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = text.<span class="built_in">size</span>(), m = pattern.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; result;</span><br><span class="line">        <span class="keyword">if</span> (m == <span class="number">0</span> || n &lt; m) <span class="keyword">return</span> result;</span><br><span class="line"></span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; next = useNextVal ? <span class="built_in">getNextVal</span>(pattern) : <span class="built_in">getNext</span>(pattern);</span><br><span class="line">        <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; text[i] != pattern[j]) &#123;</span><br><span class="line">                j = next[j - <span class="number">1</span>]; <span class="comment">// 回退位置</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (text[i] == pattern[j]) &#123;</span><br><span class="line">                ++j;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (j == m) &#123;</span><br><span class="line">                result.<span class="built_in">push_back</span>(i - m + <span class="number">1</span>); <span class="comment">// 匹配成功</span></span><br><span class="line">                j = next[j - <span class="number">1</span>];             <span class="comment">// 寻找下一个匹配</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度为O(n + m)，其中：</p>
+<ul>
+<li><code>n</code> 是文本串 <code>text</code> 的长度</li>
+<li><code>m</code> 是模式串 <code>pattern</code> 的长度</li>
+</ul>
+</div><div class="post-copyright"><div class="post-copyright-author"><span class="post-copyright-meta">本文作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Kirius</a></span></div><div class="post-copyright-type"><span class="post-copyright-meta">本文链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/05/20/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8DKMP/">http://example.com/2025/05/20/字符串模式匹配KMP/</a></span></div><div class="post-copyright-notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本站点所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com">Kirius</a>！</span></div></div></article><div id="pagination"><div class="prev-post pull-left"><span class="line line-top"></span><span class="line line-right"></span><span class="line line-bottom"></span><span class="line line-left"></span><a href="/2025/05/23/Binary%20Tree/"><i class="fas fa-angle-left">&nbsp;</i><span>Binary Tree</span></a></div><div class="next-post pull-right"><span class="line line-top"></span><span class="line line-right"></span><span class="line line-bottom"></span><span class="line line-left"></span><a href="/2025/05/20/Queue%20%E5%AE%B9%E5%99%A8/"><span>Queue 容器</span><span>&nbsp;</span><i class="fas fa-angle-right"></i></a></div></div><!--div!= paginator()--></div></div><div class="button-hover" id="return-top"><i class="fas fa-arrow-up" aria-hidden="true"></i></div><footer><div id="footer"><div class="button-hover" id="side-button"><i class="fas fa-arrow-right"></i></div><div class="right-content"><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fas fa-file-o"></i></span><span id="busuanzi_value_page_pv"></span><span></span></div><div class="copyright">&copy;2017 ～ 2025 By Kirius</div></div></div></footer></div><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/jquery-3.3.1.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/velocity.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/jquery.mCustomScrollbar.concat.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/fan.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/canvas_bg.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/utils.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/scroll.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/sidebar.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/copy.js"></script><!--script(src=url)--></body></html>

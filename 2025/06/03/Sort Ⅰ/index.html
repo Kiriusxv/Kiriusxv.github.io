@@ -1,0 +1,174 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Sort Ⅰ"><meta name="keywords" content="C++"><meta name="author" content="Kirius,undefined"><meta name="copyright" content="Kirius"><title>Sort Ⅰ【Kirius】</title><link rel="stylesheet" href="/css/fan.css"><link rel="stylesheet" href="/css/thirdparty/jquery.mCustomScrollbar.min.css"><link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css"><link rel="icon" href="/favicon.ico"><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- script(src=url_for("/js/mathjax/mathjax.js"))--><script type="text/x-mathjax-config">MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+});
+</script><script>var isPassword = '' || false;
+if (isPassword) {
+    if (prompt('请输入文章密码') !== '') {
+        alert('密码错误！');
+        history.back();
+    }
+}</script><script>window.GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  gitment: {},
+  valine: {},
+  twikoo: {},
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><canvas id="universe"></canvas><!--#body--><div id="sidebar"><div class="toggle-sidebar-info button-hover"><span data-toggle="文章目录">站点概览</span></div><div class="sidebar-toc"><div class="sidebar-toc-title">目录</div><div class="sidebar-toc-progress"><span class="progress-notice">您已阅读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc-progress-bar"></div></div><div class="sidebar-toc-content" id="sidebar-toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%B8-%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F%EF%BC%88Insertion-Sort%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">🔸 插入排序（Insertion Sort）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%B8-%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F%EF%BC%88Shell-Sort%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">🔸 希尔排序（Shell Sort）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%B8-%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%EF%BC%88Bubble-Sort%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">🔸 冒泡排序（Bubble Sort）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%B8-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%EF%BC%88Quick-Sort%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">🔸 快速排序（Quick Sort）</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info-avatar"><img class="author-info-avatar-img" src="/images/avatar.jpg"></div><div class="author-info-name">Kirius</div><div class="author-info-description"></div><div class="links-buttons"><a class="links-button button-hover" href="https://github.com/Kiriusxv" target="_blank">GitHub<i class="icon-dot bg-color7"></i></a><a class="links-button button-hover" href="mailto:1337127972@qq.com" target="_blank">E-Mail<i class="icon-dot bg-color2"></i></a><a class="links-button button-hover" href="tencent://message/?uin=(?)&amp;Site=&amp;Menu=yes" target="_blank">QQ<i class="icon-dot bg-color6"></i></a></div><div class="author-info-articles"><a class="author-info-articles-archives article-meta" href="/archives"><span class="pull-top">日志</span><span class="pull-bottom">19</span></a><a class="author-info-articles-tags article-meta" href="/tags"><span class="pull-top">标签</span><span class="pull-bottom">15</span></a><a class="author-info-articles-categories article-meta" href="/categories"><span class="pull-top">分类</span><span class="pull-bottom">8</span></a></div></div></div><div id="main-container"><header><div id="menu-outer"><i class="menu-list-icon fas fa-bars"></i><nav id="menu-inner"><a class="menu-item" href="/">首页</a><a class="menu-item" href="/tags">标签</a><a class="menu-item" href="/categories">分类</a><a class="menu-item" href="/archives">归档</a><a class="menu-item" href="/about">关于</a></nav><div class="right-info"><a class="title-name" href="/">Kirius</a><span id="now-time"></span></div></div></header><div id="content-outer"><div id="content-inner"><article id="post"><div class="post-header"><div class="title">Sort Ⅰ</div><div class="container"><time class="button-hover post-date"><i class="fas fa-calendar-alt article-icon" aria-hidden="true"></i> 发表于 2025-06-03 | 更新于 2025-06-03</time><!--time.button-hover.post-date #[i.fas.fa-calendar-alt.article-icon(aria-hidden="true")] #[=__('post.modified')] #[=date(page['updated'], config.date_format)]--><div class="button-hover categories"><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></div><div class="button-hover tags"><i class="fa fa-tag article-icon" aria-hidden="true"></i><a class="link-a" href="/tags/C/">C++</a></div></div></div><div class="main-content"><p>​	几个排序算法</p>
+<span id="more"></span>
+
+<h3 id="🔸-插入排序（Insertion-Sort）"><a href="#🔸-插入排序（Insertion-Sort）" class="headerlink" title="🔸 插入排序（Insertion Sort）"></a>🔸 插入排序（Insertion Sort）</h3><p><strong>基本思路：</strong> 将当前元素插入到前面已经排好序的部分中。</p>
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>最好情况</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>平均情况</td>
+<td>O(n²)</td>
+</tr>
+<tr>
+<td>最坏情况</td>
+<td>O(n²)</td>
+</tr>
+<tr>
+<td>空间复杂度</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>稳定性</td>
+<td>✅ 稳定</td>
+</tr>
+</tbody></table>
+<p><strong>优化：</strong></p>
+<ul>
+<li>当数组基本有序时，插入排序性能非常好。</li>
+<li>可以用二分查找优化插入位置（但写法稍复杂）。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">insertionSort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; arr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; arr.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">        <span class="type">int</span> key = arr[i];</span><br><span class="line">        <span class="type">int</span> j = i - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; arr[j] &gt; key) &#123;</span><br><span class="line">            arr[j + <span class="number">1</span>] = arr[j];</span><br><span class="line">            --j;</span><br><span class="line">        &#125;</span><br><span class="line">        arr[j + <span class="number">1</span>] = key;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="🔸-希尔排序（Shell-Sort）"><a href="#🔸-希尔排序（Shell-Sort）" class="headerlink" title="🔸 希尔排序（Shell Sort）"></a>🔸 希尔排序（Shell Sort）</h3><p><strong>基本思路：</strong> 将数组按一定间隔分组做插入排序，逐渐减小间隔到1。</p>
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>最好情况</td>
+<td>O(n log n)</td>
+</tr>
+<tr>
+<td>平均情况</td>
+<td>O(n^1.3) ~ O(n²)</td>
+</tr>
+<tr>
+<td>最坏情况</td>
+<td>O(n²)</td>
+</tr>
+<tr>
+<td>空间复杂度</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>稳定性</td>
+<td>❌ 不稳定</td>
+</tr>
+</tbody></table>
+<p><strong>优化：</strong></p>
+<ul>
+<li>不同的“增量序列”会影响性能，如：Shell、Hibbard、Sedgewick 等。</li>
+<li>一般建议使用 <code>gap = gap / 2</code> 的方式即可满足普通需求。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">shellSort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; arr)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = arr.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> gap = n / <span class="number">2</span>; gap &gt; <span class="number">0</span>; gap /= <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = gap; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="type">int</span> temp = arr[i], j = i;</span><br><span class="line">            <span class="keyword">while</span> (j &gt;= gap &amp;&amp; arr[j - gap] &gt; temp) &#123;</span><br><span class="line">                arr[j] = arr[j - gap];</span><br><span class="line">                j -= gap;</span><br><span class="line">            &#125;</span><br><span class="line">            arr[j] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="🔸-冒泡排序（Bubble-Sort）"><a href="#🔸-冒泡排序（Bubble-Sort）" class="headerlink" title="🔸 冒泡排序（Bubble Sort）"></a>🔸 冒泡排序（Bubble Sort）</h3><p><strong>基本思路：</strong> 每轮从前往后，两两比较，把最大的“冒”到最后。</p>
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>最好情况</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>平均情况</td>
+<td>O(n²)</td>
+</tr>
+<tr>
+<td>最坏情况</td>
+<td>O(n²)</td>
+</tr>
+<tr>
+<td>空间复杂度</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>稳定性</td>
+<td>✅ 稳定</td>
+</tr>
+</tbody></table>
+<p><strong>优化：</strong></p>
+<ul>
+<li>加一个 <code>flag</code>，如果某一轮没有发生交换，说明已经有序，可以提前结束。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">bubbleSort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; arr)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = arr.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">        <span class="type">bool</span> swapped = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n - i - <span class="number">1</span>; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="built_in">swap</span>(arr[j], arr[j + <span class="number">1</span>]);</span><br><span class="line">                swapped = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!swapped) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="🔸-快速排序（Quick-Sort）"><a href="#🔸-快速排序（Quick-Sort）" class="headerlink" title="🔸 快速排序（Quick Sort）"></a>🔸 快速排序（Quick Sort）</h3><p><strong>基本思路：</strong> 选一个“基准值”，把比它小的放左边，大的放右边，然后递归。</p>
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>最好情况</td>
+<td>O(n log n)</td>
+</tr>
+<tr>
+<td>平均情况</td>
+<td>O(n log n)</td>
+</tr>
+<tr>
+<td>最坏情况</td>
+<td>O(n²)</td>
+</tr>
+<tr>
+<td>空间复杂度</td>
+<td>O(log n)</td>
+</tr>
+<tr>
+<td>稳定性</td>
+<td>❌ 不稳定</td>
+</tr>
+</tbody></table>
+<p><strong>优化：</strong></p>
+<ul>
+<li>随机化选取 pivot（避免最坏情况如已排序数组）</li>
+<li>小数组可用插排代替递归（如 <code>n &lt; 10</code>）</li>
+<li>使用“三数取中法”选 pivot 更稳健</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">partition</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; arr, <span class="type">int</span> low, <span class="type">int</span> high)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> pivot = arr[low];</span><br><span class="line">    <span class="keyword">while</span> (low &lt; high) &#123;</span><br><span class="line">        <span class="keyword">while</span> (low &lt; high &amp;&amp; arr[high] &gt;= pivot) --high;</span><br><span class="line">        arr[low] = arr[high];</span><br><span class="line">        <span class="keyword">while</span> (low &lt; high &amp;&amp; arr[low] &lt;= pivot) ++low;</span><br><span class="line">        arr[high] = arr[low];</span><br><span class="line">    &#125;</span><br><span class="line">    arr[low] = pivot;</span><br><span class="line">    <span class="keyword">return</span> low;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">quickSort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; arr, <span class="type">int</span> low, <span class="type">int</span> high)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (low &lt; high) &#123;</span><br><span class="line">        <span class="type">int</span> pivot = <span class="built_in">partition</span>(arr, low, high);</span><br><span class="line">        <span class="built_in">quickSort</span>(arr, low, pivot - <span class="number">1</span>);</span><br><span class="line">        <span class="built_in">quickSort</span>(arr, pivot + <span class="number">1</span>, high);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</div><div class="post-copyright"><div class="post-copyright-author"><span class="post-copyright-meta">本文作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Kirius</a></span></div><div class="post-copyright-type"><span class="post-copyright-meta">本文链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/06/03/Sort%20%E2%85%A0/">http://example.com/2025/06/03/Sort Ⅰ/</a></span></div><div class="post-copyright-notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本站点所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com">Kirius</a>！</span></div></div></article><div id="pagination"><div class="prev-post pull-left"><span class="line line-top"></span><span class="line line-right"></span><span class="line line-bottom"></span><span class="line line-left"></span><a href="/2025/06/03/Csharp-delegate-event/"><i class="fas fa-angle-left">&nbsp;</i><span>C# 的委托与事件</span></a></div><div class="next-post pull-right"><span class="line line-top"></span><span class="line line-right"></span><span class="line line-bottom"></span><span class="line line-left"></span><a href="/2025/05/30/Huffman%20%E7%BC%96%E7%A0%81&amp;Union-Find%20%E5%B9%B6%E6%9F%A5%E9%9B%86/"><span>Huffman 编码 &amp; Union-Find 并查集</span><span>&nbsp;</span><i class="fas fa-angle-right"></i></a></div></div><!--div!= paginator()--></div></div><div class="button-hover" id="return-top"><i class="fas fa-arrow-up" aria-hidden="true"></i></div><footer><div id="footer"><div class="button-hover" id="side-button"><i class="fas fa-arrow-right"></i></div><div class="right-content"><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fas fa-file-o"></i></span><span id="busuanzi_value_page_pv"></span><span></span></div><div class="copyright">&copy;2017 ～ 2025 By Kirius</div></div></div></footer></div><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/jquery-3.3.1.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/velocity.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/jquery.mCustomScrollbar.concat.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/fan.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/canvas_bg.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/utils.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/scroll.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/sidebar.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/copy.js"></script><!--script(src=url)--></body></html>
